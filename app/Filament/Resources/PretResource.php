@@ -7,6 +7,7 @@ use App\Filament\Resources\PretResource\RelationManagers;
 use App\Models\Pret;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\FormsComponent;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -23,7 +24,15 @@ class PretResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\Select::make('adherent_id')
+                    ->relationship('adherent', 'nom')
+                    ->required(),
+                Forms\Components\Select::make('ouvrage_id')
+                    ->relationship('ouvrage', 'titre')
+                    ->required(),
+                Forms\Components\DatePicker::make('date_retour')
+                    ->required(),
+
             ]);
     }
 
@@ -31,7 +40,10 @@ class PretResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('adherent.nom'),
+                Tables\Columns\TextColumn::make('ouvrage.titre'),
+                Tables\Columns\TextColumn::make('date_retour')->date(),
+
             ])
             ->filters([
                 //
