@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('prets', function (Blueprint $table) {
             $table->id();
             $table->dateTime('date_retour')->nullable();
-
+            $table->string('status')->default('Non rendu');
             $table->unsignedBigInteger('ouvrage_id');
             $table->unsignedBigInteger('adherent_id');
 

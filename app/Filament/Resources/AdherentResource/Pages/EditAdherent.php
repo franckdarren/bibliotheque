@@ -16,9 +16,4 @@ class EditAdherent extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
-
-    protected function getModalHeading(): string
-    {
-        return 'Modifier un adhérent';
-    }
 }

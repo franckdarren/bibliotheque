@@ -17,6 +17,11 @@ class Adherent extends Model
 
     ];
 
+    public function getFullNameAttribute()
+{
+    return "{$this->nom} {$this->prenom}";
+}
+
     // Un adherent peut avoir plusieurs prêts
     public function prets() {
         return $this->hasMany(Pret::class);

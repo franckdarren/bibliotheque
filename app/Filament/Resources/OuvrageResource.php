@@ -14,6 +14,9 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Filters\Filter;
+use Filament\Forms\Components\Select;
+
 
 class OuvrageResource extends Resource
 {
@@ -25,7 +28,12 @@ class OuvrageResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('type'),
+                Select::make('type')
+                    ->options([
+                        'Livre' => 'Livre',
+                        'Rapport' => 'Rapport',
+                    ])
+                    ->native(false),
                 TextInput::make('titre'),
                 TextInput::make('thematique'),
                 TextInput::make('nb_page'),
@@ -39,15 +47,18 @@ class OuvrageResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('titre'),
+                TextColumn::make('titre')->searchable(),
                 TextColumn::make('type'),
-                TextColumn::make('thematique'),
+                TextColumn::make('thematique')->searchable(),
                 TextColumn::make('nb_page'),
-                TextColumn::make('date_parution'),
-                TextColumn::make('auteur'),
+                TextColumn::make('date_parution')->searchable(),
+                TextColumn::make('auteur')->searchable(),
             ])
             ->filters([
-                //
+                Filter::make('rapport')
+                    ->query(fn(Builder $query): Builder => $query->where('type', 'Rapport')),
+                Filter::make('livre')
+                    ->query(fn(Builder $query): Builder => $query->where('type', 'Rapport'))
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

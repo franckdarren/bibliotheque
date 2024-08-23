@@ -9,9 +9,4 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateAdherent extends CreateRecord
 {
     protected static string $resource = AdherentResource::class;
-
-    protected function getModalHeading(): string
-    {
-        return 'Create un nouvel adhérent';
-    }
 }

@@ -13,6 +13,9 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Filters\Filter;
+use Filament\Forms\Components\Select;
+
 
 class PretResource extends Resource
 {
@@ -32,6 +35,13 @@ class PretResource extends Resource
                     ->required(),
                 Forms\Components\DatePicker::make('date_retour')
                     ->required(),
+                Select::make('status')
+                    ->label('Statut')
+                    ->options([
+                        'Non rendu' => 'Non rendu',
+                        'Rendu' => 'Rendu',
+                    ])
+                    ->native(false),
 
             ]);
     }
@@ -40,14 +50,15 @@ class PretResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('adherent.nom'),
-                Tables\Columns\TextColumn::make('ouvrage.titre'),
-                Tables\Columns\TextColumn::make('date_retour')->date(),
+                Tables\Columns\TextColumn::make('adherent.full_name')->searchable(),
+                Tables\Columns\TextColumn::make('ouvrage.titre')->searchable(),
+                Tables\Columns\TextColumn::make('created_at')->date('d/m/Y')->label("Date d'emprunt"),
+                Tables\Columns\TextColumn::make('date_retour')->date('d/m/Y')->searchable(),
+                Tables\Columns\TextColumn::make('status')->searchable()->label('Statut'),
+
 
             ])
-            ->filters([
-                //
-            ])
+            ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
