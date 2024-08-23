@@ -16,4 +16,13 @@ class ListAdherents extends ListRecords
             Actions\CreateAction::make(),
         ];
     }
+
+    protected function getCreateActions(): array
+    {
+        return [
+            Actions\CreateAction::make()->modal(),
+        ];
+    }
+
+
 }

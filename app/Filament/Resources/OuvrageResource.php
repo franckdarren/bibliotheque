@@ -6,6 +6,8 @@ use App\Filament\Resources\OuvrageResource\Pages;
 use App\Filament\Resources\OuvrageResource\RelationManagers;
 use App\Models\Ouvrage;
 use Filament\Forms;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -23,7 +25,13 @@ class OuvrageResource extends Resource
     {
         return $form
             ->schema([
-                //
+                TextInput::make('type'),
+                TextInput::make('titre'),
+                TextInput::make('thematique'),
+                TextInput::make('nb_page'),
+                TextInput::make('date_parution'),
+                TextInput::make('auteur'),
+
             ]);
     }
 
@@ -31,7 +39,12 @@ class OuvrageResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('titre'),
+                TextColumn::make('type'),
+                TextColumn::make('thematique'),
+                TextColumn::make('nb_page'),
+                TextColumn::make('date_parution'),
+                TextColumn::make('auteur'),
             ])
             ->filters([
                 //
