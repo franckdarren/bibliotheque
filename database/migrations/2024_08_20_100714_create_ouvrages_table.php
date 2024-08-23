@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('ouvrages', function (Blueprint $table) {
             $table->id();
             $table->string('type')->default(TypeOuvrage::LIVRE);
+            $table->string('titre');
             $table->string('thematique');
             $table->integer('nb_page');
             $table->year('date_parution')->nullable();

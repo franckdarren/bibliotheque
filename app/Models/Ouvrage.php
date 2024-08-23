@@ -11,6 +11,7 @@ class Ouvrage extends Model
 
     protected $fillable = [
         "type",
+        "titre",
         "thematique",
         "nb_page",
         "date_parution",
