@@ -15,4 +15,14 @@ class Pret extends Model
         "adherent_id",
 
     ];
+
+    // Un prêt appartient à un adhérent
+    public function adherent() {
+        return $this->belongsTo(Adherent::class);
+    }
+
+    // Un prêt concerne un ouvrage
+    public function ouvrage() {
+        return $this->belongsTo(Ouvrage::class);
+    }
 }

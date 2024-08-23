@@ -17,4 +17,9 @@ class Ouvrage extends Model
         "date_parution",
         "auteur",
     ];
+
+    // Un ouvrage peut avoir plusieurs prêts
+    public function prets() {
+        return $this->hasMany(Pret::class);
+    }
 }

@@ -16,4 +16,9 @@ class Adherent extends Model
         "contact",
 
     ];
+
+    // Un adherent peut avoir plusieurs prêts
+    public function prets() {
+        return $this->hasMany(Pret::class);
+    }
 }
