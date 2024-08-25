@@ -16,9 +16,7 @@ class RechercheOuvrage extends Component
         return view('livewire.recherche-ouvrage', [
             'ouvrages' => Ouvrage::where('titre', 'like', '%' . $this->search . '%')
                 ->orWhere('thematique', 'like', '%' . $this->search . '%')
-                ->paginate(6),
-                // ->get(),
-
+                ->paginate(10),
 
         ]);
     }
