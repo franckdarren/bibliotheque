@@ -9,7 +9,7 @@
 
 
 ## Installation
-1- Modifier le fichier .env et fournir les bons paramètres de: 
+- Modifier le fichier .env et fournir les bons paramètres de: 
     DB_CONNECTION=mysql
     DB_HOST=127.0.0.1
     DB_PORT=3306
@@ -17,10 +17,10 @@
     DB_USERNAME=?
     DB_PASSWORD=?
 
-2- composer install
-3- npm install
-4- php artisan migrate
-5- php artisan db:seed
+- composer install
+- npm install
+- php artisan migrate
+- php artisan db:seed
 
 
 ## UserAdmin
