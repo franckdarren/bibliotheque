@@ -37,8 +37,8 @@ class AdherentResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('nom'),
-                TextColumn::make('prenom'),
+                TextColumn::make('nom')->searchable(),
+                TextColumn::make('prenom')->searchable(),
                 TextColumn::make('adresse'),
                 TextColumn::make('contact'),
 
