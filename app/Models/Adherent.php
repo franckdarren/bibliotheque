@@ -9,6 +9,8 @@ class Adherent extends Model
 {
     use HasFactory;
 
+    protected $appends = ['full_name'];
+
     protected $fillable = [
         "nom",
         "prenom",
@@ -18,12 +20,13 @@ class Adherent extends Model
     ];
 
     public function getFullNameAttribute()
-{
-    return "{$this->nom} {$this->prenom}";
-}
+    {
+        return "{$this->nom} {$this->prenom}";
+    }
 
     // Un adherent peut avoir plusieurs prêts
-    public function prets() {
+    public function prets()
+    {
         return $this->hasMany(Pret::class);
     }
 }

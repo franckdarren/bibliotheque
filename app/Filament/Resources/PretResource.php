@@ -28,7 +28,10 @@ class PretResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Select::make('adherent_id')
-                    ->relationship('adherent', 'nom')
+                    ->label('Adherent')
+                    ->options(function () {
+                        return \App\Models\Adherent::all()->pluck('full_name', 'id');
+                    })
                     ->required(),
                 Forms\Components\Select::make('ouvrage_id')
                     ->relationship('ouvrage', 'titre')
