@@ -42,7 +42,7 @@ class AdherentResource extends Resource
                 TextColumn::make('adresse'),
                 TextColumn::make('contact'),
 
-            ])
+            ])->defaultSort('nom', 'asc')->searchPlaceholder('Rechercher (Nom, Prénom)')
             ->filters([
                 //
             ])

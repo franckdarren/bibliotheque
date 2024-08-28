@@ -53,15 +53,27 @@ class PretResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('adherent.full_name')->searchable(),
+                Tables\Columns\TextColumn::make('adherent.full_name')->searchable(['nom', 'prenom']),
                 Tables\Columns\TextColumn::make('ouvrage.titre')->searchable(),
-                Tables\Columns\TextColumn::make('created_at')->date('d/m/Y')->label("Date d'emprunt"),
-                Tables\Columns\TextColumn::make('date_retour')->date('d/m/Y')->searchable(),
-                Tables\Columns\TextColumn::make('status')->searchable()->label('Statut'),
+                Tables\Columns\TextColumn::make('created_at')->date('d/m/Y')->label("Date d'emprunt")->sortable(),
+                Tables\Columns\TextColumn::make('date_retour')->date('d/m/Y')->searchable()->sortable(),
+                Tables\Columns\TextColumn::make('status')->searchable()->label(
+                    'Statut'
+                )->color(fn(string $state): string => match ($state) {
+                    'Non rendu' => 'warning',
+                    'Rendu' => 'success',
+                    default => 'secondary',
+                })
+                    ->badge()
 
 
+            ])->defaultSort('created_at', 'desc')
+            ->filters([
+                Filter::make('rendu')
+                    ->query(fn(Builder $query): Builder => $query->where('status', 'Rendu')),
+                Filter::make('non rendu')
+                    ->query(fn(Builder $query): Builder => $query->where('status', 'Non Rendu'))
             ])
-            ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])

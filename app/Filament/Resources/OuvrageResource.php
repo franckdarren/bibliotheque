@@ -53,7 +53,7 @@ class OuvrageResource extends Resource
                 TextColumn::make('nb_page'),
                 TextColumn::make('date_parution')->searchable(),
                 TextColumn::make('auteur')->searchable(),
-            ])
+            ])->defaultSort('titre', 'asc')->searchPlaceholder('Rechercher (Titre, Auteur, Thématique...)')
             ->filters([
                 Filter::make('rapport')
                     ->query(fn(Builder $query): Builder => $query->where('type', 'Rapport')),
